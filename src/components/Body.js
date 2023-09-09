@@ -6,10 +6,13 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
+    const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         getRestaurants();
     }, []);
+
     const getRestaurants = async () => {
         const data = await fetch(
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
@@ -17,22 +20,44 @@ const Body = () => {
         const json = await data.json();
         console.log(json)
         setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     };
-    if(listOfRestaurants.length === 0) {
-        return <Shimmer/>
+    if (listOfRestaurants.length === 0) {
+        return <Shimmer />
     }
     return (
-        <div>
-            <button onClick={() => {
-                const filteredList = listOfRestaurants.filter(
-                    (res) => res.info.avgRating > 4
-                );
-                setListOfRestaurants(filteredList);
-            }}>Top Rated</button>
+        <div className="body">
+            <div className="filter">
+                <div>
+                    <input type="text"
+                        className="search-box"
+                        //Binding the input to searchbtn
+                        value={searchText}
+                        //getting text(value) from input box from normal event handler
+                        onChange={(e) => {
+                            setSearchText(e.target.value)
+                        }} />
+                    <button
+                        onClick={() => {
+                            console.log(searchText)
+                            const filteredRestaurant = listOfRestaurants.filter(
+                                (res) => res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase())
+                            );
+                            setFilteredRestaurant(filteredRestaurant)
+                        }}
+                    >Search</button>
+                </div>
+                <button onClick={() => {
+                    const filteredList = listOfRestaurants.filter(
+                        (res) => res.info.avgRating > 4
+                    );
+                    setFilteredRestaurant(filteredList);
+                }}>Top Rated</button>
+            </div>
             {/* <div className="search">search</div> */}
             <div className="res-container">
                 {/* We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as id */}
-                {listOfRestaurants.map((restaurant) => {
+                {filteredRestaurant.map((restaurant) => {
                     return <RestuarantCard key={restaurant.info.id} {...restaurant.info} />
                 })}
             </div>

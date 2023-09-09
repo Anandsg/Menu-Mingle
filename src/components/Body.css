@@ -20,3 +20,10 @@
 .res-card {
   cursor: pointer;
 }
+
+.filter{
+  display: flex;
+  margin: 15px;
+  gap: 10px;
+  justify-content: left;
+}
