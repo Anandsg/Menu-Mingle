@@ -1,6 +1,6 @@
 import React from 'react';
 import './Body.css';
-import { CDN_URL } from '../utils/constants';
+import { CDN_URL } from '../../utils/constants';
 
 const RestuarantCard = ({ cloudinaryImageId,
     name,
