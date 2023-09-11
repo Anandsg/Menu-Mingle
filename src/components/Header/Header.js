@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import './Header.css';
-import { LOGO_URL } from "../utils/constants";
+import { LOGO_URL } from "../../utils/constants";
 
 const Header = () => {
 
