@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './Body.css';
 import RestuarantCard from "./RestuarantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 
 const Body = () => {
@@ -57,7 +58,7 @@ const Body = () => {
             <div className="res-container">
                 {/* We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as id */}
                 {filteredRestaurant.map((restaurant) => {
-                    return <RestuarantCard key={restaurant.info.id} {...restaurant.info} />
+                    return <Link key={restaurant.info.id} to={'restaurant/' + restaurant.info.id}><RestuarantCard  {...restaurant.info} /></Link>
                 })}
             </div>
         </div>
