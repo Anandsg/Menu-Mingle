@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import './Header.css';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
 
-    const [btnChange, setBtnChange] = useState('Login')
+    const [isLoggedin, setIsLoggedIn] = useState(true);
+    const navigate = useNavigate();
     console.log('Header rendered')
 
     // if No dependency array - [] => useEffect will be called everytime when component render
@@ -13,9 +15,9 @@ const Header = () => {
     // if there is dependecy with value in it [btnChange] => useEffect will be called everytime 
     // when btnChange updated
 
-    useEffect(() => {
-        console.log('Header useEffect');
-    }, [btnChange])
+    // useEffect(() => {
+    //     console.log('Header useEffect');
+    // }, [btnChange])
 
     return (
         <div className="header">
@@ -37,13 +39,23 @@ const Header = () => {
                     <Link to='/cart'>
                         <li>Cart</li>
                     </Link>
-                    <button className="login-btn" onClick={() => {
+                    {/* <button className="login-btn" onClick={() => {
                         btnChange === 'Login' ?
                             setBtnChange('Logout') :
                             setBtnChange('Login')
-                    }}>{btnChange}</button>
+                    }}>{btnChange}</button> */}
+                    {isLoggedin ? (
+                        <button className="ogout-btn"
+                            onClick={() => setIsLoggedIn(false)}
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <button className="login-btn" onClick={() => navigate('/login')}>
+                            Login
+                        </button>
+                    )}
                 </ul>
-
             </div>
         </div>
     )
