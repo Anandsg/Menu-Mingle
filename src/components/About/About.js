@@ -1,5 +1,4 @@
 import React from "react";
-import User from "./User";
 import UserClass from "./UserClass";
 
 class About extends React.Component {
@@ -9,16 +8,15 @@ class About extends React.Component {
     }
 
     componentDidMount() {
-        console.log("parent did mount")
+        // console.log("parent did mount")
+
     }
 
     render() {
-        console.log("parent render")
+        // console.log("parent render")
         return (
             <div>
-                <h3>This is About us page</h3>
-                <User name={"Anand functional comp"} />
-                <UserClass name={"Anand class comp"} />
+                <UserClass name={"Anand"} location={"Gadag"} />
             </div>
         );
     }

@@ -8,7 +8,7 @@ const Header = () => {
 
     const [isLoggedin, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
-    console.log('Header rendered')
+    // console.log('Header rendered')
 
     // if No dependency array - [] => useEffect will be called everytime when component render
     // if there is dependency with empty array - [] => useEffect will be called initial render (just once)
