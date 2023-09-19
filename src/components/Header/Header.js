@@ -3,11 +3,14 @@ import './Header.css';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Header = () => {
 
     const [isLoggedin, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
+
+    const onlineStatus = useOnlineStatus();
     // console.log('Header rendered')
 
     // if No dependency array - [] => useEffect will be called everytime when component render
@@ -27,6 +30,9 @@ const Header = () => {
             </div>
             <div className="nav-items">
                 <ul>
+                    <li>
+                        {onlineStatus === true ? "user online: 🟢" : "user offline: ⛔️"}
+                    </li>
                     <Link to='/'>
                         <li>Home</li>
                     </Link>
