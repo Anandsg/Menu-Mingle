@@ -7,6 +7,7 @@ import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Header = () => {
 
+
     const [isLoggedin, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
 
@@ -38,6 +39,9 @@ const Header = () => {
                     </Link>
                     <Link to='/about'>
                         <li>About</li>
+                    </Link>
+                    <Link to='/instamart'>
+                        <li>Instamart</li>
                     </Link>
                     <Link to='/contact'>
                         <li>Contact Us</li>
