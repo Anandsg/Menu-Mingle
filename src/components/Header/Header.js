@@ -4,6 +4,14 @@ import { LOGO_URL } from '../../utils/constants';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
+import {
+    BuildingOfficeIcon,
+    HomeIcon,
+    PhoneIcon,
+    ShoppingBagIcon,
+} from '@heroicons/react/24/solid';
+
+
 
 const Header = () => {
 
@@ -24,44 +32,52 @@ const Header = () => {
     // }, [btnChange])
 
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-between px-28 shadow-md">
             <div className="logo-container">
                 <img src={LOGO_URL}
                     className="w-32 p-5" alt="logo" />
             </div>
             <div className="flex items-center m-3">
                 <ul className="flex">
-                    <li className="px-5">
+                    {/* <li className="className='p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2 text-gray-700">
                         {onlineStatus === true ? "user online: 🟢" : "user offline: ⛔️"}
-                    </li>
-                    <Link to='/'>
-                        <li className="px-4">Home</li>
+                    </li> */}
+                    <Link to='/'
+                        className='p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2'>
+                        <HomeIcon className='w-4 h-4 text-gray-700' />
+                        <li className="">
+                            Home
+                        </li>
                     </Link>
-                    <Link to='/about'>
-                        <li className="px-4">About</li>
+                    <Link to='/about'
+                        className='p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2'>
+                        <BuildingOfficeIcon className='w-4 h-4 text-gray-700' />{' '}
+                        <li className="hidden md:block">
+                            About
+                        </li>
                     </Link>
-                    <Link to='/instamart'>
-                        <li className="px-4">Instamart</li>
+                    {/* <Link to='/instamart'>
+                        <li className="hidden md:block">Instamart</li>
+                    </Link> */}
+                    <Link to='/contact' className='p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2'>
+                        <PhoneIcon className='w-4 h-4 text-gray-700' />{' '}
+                        <li className="hidden md:block">
+                            Contact
+                        </li>
                     </Link>
-                    <Link to='/contact'>
-                        <li className="px-4">Contact Us</li>
+                    <Link to='/cart'
+                        className='p-2 relative md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2'>
+                        <ShoppingBagIcon className='w-4 h-4 text-gray-700' />{' '}
+                        <li className="hidden md:block">Cart</li>
                     </Link>
-                    <Link to='/cart'>
-                        <li className="px-4">Cart</li>
-                    </Link>
-                    {/* <button className="login-btn" onClick={() => {
-                        btnChange === 'Login' ?
-                            setBtnChange('Logout') :
-                            setBtnChange('Login')
-                    }}>{btnChange}</button> */}
                     {isLoggedin ? (
-                        <button className="ogout-btn"
+                        <button className="ml-4 bg-orange-400 text-white p-2 px-4 rounded-md items-center gap-2 hidden md:flex"
                             onClick={() => setIsLoggedIn(false)}
                         >
                             Logout
                         </button>
                     ) : (
-                        <button className="login-btn" onClick={() => navigate('/login')}>
+                        <button className="ml-4 bg-orange-400 text-white p-2 px-4 rounded-md items-center gap-2 hidden md:flex" onClick={() => navigate('/login')}>
                             Login
                         </button>
                     )}

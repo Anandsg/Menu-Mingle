@@ -33,6 +33,7 @@ const Body = () => {
     return listOfRestaurants.length === 0 ? (
         <Shimmer />
     ) : (
+
         <div className="">
             <div className="">
                 <div className="flex ap-2 md:gap-4 max-w-[560px] w-[90%] mx-auto mt-6">
@@ -57,15 +58,16 @@ const Body = () => {
                         }}
                     >Search</button>
                 </div>
-                <button onClick={() => {
-                    const filteredList = listOfRestaurants.filter(
-                        (res) => res.info.avgRating > 4
-                    );
-                    setFilteredRestaurant(filteredList);
-                }}>Top Rated</button>
+                <div className="">
+                    <button onClick={() => {
+                        const filteredList = listOfRestaurants.filter(
+                            (res) => res.info.avgRating > 4
+                        );
+                        setFilteredRestaurant(filteredList);
+                    }}>Top Rated</button>
+                </div>
             </div>
-            {/* <div className="search">search</div> */}
-            <div className="res-container">
+            <div className="flex flex-wrap justify-center px-8">
                 {/* We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as id */}
                 {filteredRestaurant.map((restaurant) => {
                     return <Link key={restaurant.info.id} to={'restaurant/' + restaurant.info.id}><RestuarantCard  {...restaurant.info} /></Link>
