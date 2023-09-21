@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik"; // import Formik from formik
 import * as Yup from "yup"; // import Yup from yup
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+// import './Login.css';
 
 // create a schema for validation
 const schema = Yup.object().shape({

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import './Header.css';
+// import './Header.css';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -24,30 +24,30 @@ const Header = () => {
     // }, [btnChange])
 
     return (
-        <div className="header">
+        <div className="flex justify-between">
             <div className="logo-container">
                 <img src={LOGO_URL}
-                    className="logo" alt="logo" />
+                    className="w-32 p-5" alt="logo" />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>
+            <div className="flex items-center m-3">
+                <ul className="flex">
+                    <li className="px-5">
                         {onlineStatus === true ? "user online: 🟢" : "user offline: ⛔️"}
                     </li>
                     <Link to='/'>
-                        <li>Home</li>
+                        <li className="px-4">Home</li>
                     </Link>
                     <Link to='/about'>
-                        <li>About</li>
+                        <li className="px-4">About</li>
                     </Link>
                     <Link to='/instamart'>
-                        <li>Instamart</li>
+                        <li className="px-4">Instamart</li>
                     </Link>
                     <Link to='/contact'>
-                        <li>Contact Us</li>
+                        <li className="px-4">Contact Us</li>
                     </Link>
                     <Link to='/cart'>
-                        <li>Cart</li>
+                        <li className="px-4">Cart</li>
                     </Link>
                     {/* <button className="login-btn" onClick={() => {
                         btnChange === 'Login' ?

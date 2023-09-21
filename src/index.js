@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import About from './pages/About/About';
 import Error from './components/Body/Error';
-import Contact from './pages/Cart/Contact/Contact';
+import Contact from './pages/Contact/Contact';
 import Body from './components/Body/Body';
 import Cart from './pages/Cart/Cart';
 import Login from './pages/Login/Login';
+import './index.css';
 import RestaurantMenu from './components/Menu/RestaurantMenu';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import InstaMart from './pages/InstaMart';
 
 
-const InstaMart = lazy(() => import('./pages/InstaMart'))
+const InstaMart = lazy(() => import('./pages/InstaMart/InstaMart'))
 const appRouter = createBrowserRouter([
     {
         path: '/',

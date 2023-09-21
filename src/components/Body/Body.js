@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './Body.css';
+// import './Body.css';
 import RestuarantCard from "./RestuarantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -33,11 +33,12 @@ const Body = () => {
     return listOfRestaurants.length === 0 ? (
         <Shimmer />
     ) : (
-        <div className="body">
-            <div className="filter">
-                <div>
+        <div className="">
+            <div className="">
+                <div className="flex ap-2 md:gap-4 max-w-[560px] w-[90%] mx-auto mt-6">
                     <input type="text"
-                        className="search-box"
+                        className="p-2 px-4 rounded-md border outline-none focus-within:border-orange-400 border-gray-200 grow w-1/3"
+                        placeholder='Search restaurants'
                         //Binding the input to searchbtn
                         value={searchText}
                         //getting text(value) from input box from normal event handler
@@ -45,6 +46,8 @@ const Body = () => {
                             setSearchText(e.target.value)
                         }} />
                     <button
+                        type="submit"
+                        className="bg-orange-400 basis-2/12 text-center text-white p-2 flex justify-center gap-2 items-center md:px-8 rounded-md text-sm md:text-base"
                         onClick={() => {
                             console.log(searchText)
                             const filteredRestaurant = listOfRestaurants.filter(
