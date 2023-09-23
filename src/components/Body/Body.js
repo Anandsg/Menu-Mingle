@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import './Body.css';
-import RestuarantCard from "./RestuarantCard";
+import RestuarantCard, { withPromotedRestaurant } from "./RestuarantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
@@ -10,6 +10,8 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState('');
+    const PromotedRestaurant = withPromotedRestaurant(RestuarantCard);
+    console.log('Body rendered', listOfRestaurants);
 
     useEffect(() => {
         getRestaurants();
@@ -28,6 +30,7 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     if (onlineStatus === false)
         return (
+
             <h2>looks you're offline, check your internet connection.</h2>
         );
     return listOfRestaurants.length === 0 ? (
@@ -36,6 +39,7 @@ const Body = () => {
 
         <div className="">
             <div className="">
+
                 <div className="flex ap-2 md:gap-4 max-w-[560px] w-[90%] mx-auto mt-6">
                     <input type="text"
                         className="p-2 px-4 rounded-md border outline-none focus-within:border-orange-400 border-gray-200 grow w-1/3"
@@ -67,11 +71,19 @@ const Body = () => {
                     }}>Top Rated</button>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center px-8">
+            <div className="flex flex-wrap justify-center gap-5">
                 {/* We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as id */}
                 {filteredRestaurant.map((restaurant) => {
-                    return <Link key={restaurant.info.id} to={'restaurant/' + restaurant.info.id}><RestuarantCard  {...restaurant.info} /></Link>
+                    return <Link key={restaurant.info.id} to={'restaurant/' + restaurant.info.id}
+                    >
+                        {restaurant.info.promoted ? (
+                            <PromotedRestaurant />
+                        ) : (
+                            <RestuarantCard  {...restaurant.info} />
+                        )}
+                    </Link>
                 })}
+
             </div>
         </div>
     );

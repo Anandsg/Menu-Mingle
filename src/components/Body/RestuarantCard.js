@@ -8,15 +8,15 @@ const RestuarantCard = ({ cloudinaryImageId,
     avgRating,
 }) => {
     return (
-        <div className='m-4 p-4 w-[240px]' >
+        <div className='md:w-60 shadow-md md:shadow-none py-4 px-4 md:py-2  hover:shadow-xl rounded flex flex-col gap-1 text-[0.7rem] text-[#535665] '  >
             <div className="res-card">
-                <img className="relative w-full min-h-[180px] overflow-hidden aspect-video object-cover block rounded-md"
+                <img className="relative w-full min-h-[150px] overflow-hidden aspect-video object-cover block rounded-md"
                     alt="restaurant"
                     src={CDN_URL + cloudinaryImageId} />
-                <h4 className='text-lg font-semibold mt-2 text-zinc-800'>
+                <h4 className='text-lg font-semibold mt-2 text-zinc-600'>
                     {name}
                 </h4>
-                <h4 className='font-semibold text-gray-600 text-sm'>
+                <h4 className='text-sm'>
                     {cuisines.join(', ')}
                 </h4>
                 <div className="flex justify-between items-center my-2 font-medium">
@@ -36,7 +36,18 @@ const RestuarantCard = ({ cloudinaryImageId,
                 <div className="flex border-t pt-4 gap-2  font-semibold"></div>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export const withPromotedRestaurant = () => {
+    return () => {
+        return (props) => {
+            <div>
+                <label>Promoted</label>
+                <RestuarantCard {...props} />
+            </div>
+        }
+    };
+};
 
 export default RestuarantCard;
