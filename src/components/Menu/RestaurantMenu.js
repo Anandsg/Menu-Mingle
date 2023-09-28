@@ -15,7 +15,7 @@ const RestaurantMenu = () => {
     // Menu path
     const { name, cuisines, sla, areaName, avgRatingString, totalRatingsString } = resInfo?.cards[0]?.card?.card?.info;
     // Menu items list path
-    const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card?.card;
+    // const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card?.card;
     // console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
 
     const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -54,10 +54,12 @@ const RestaurantMenu = () => {
             </div>
             {categories.map((category, index) => (
                 // controlled component
-                <RestaurantCategory key={category.card?.card.title}
+                <RestaurantCategory
+                    key={category.card?.card.title}
                     data={category.card?.card}
-                    showItems={index === showIndex ? true : false}
-                    setShowIndex={() => setShowIndex(index)}
+                    showIndex={showIndex}
+                    index={index}
+                    setShowIndex={setShowIndex}
                 />
 
             ))}
@@ -65,7 +67,3 @@ const RestaurantMenu = () => {
     );
 };
 export default RestaurantMenu;
-
-// {categories.map((category) => (
-//     <RestaurantCategory data={category.card?.card} />
-// ))}
