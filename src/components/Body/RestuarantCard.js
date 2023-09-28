@@ -8,7 +8,7 @@ const RestuarantCard = ({ cloudinaryImageId,
     avgRating,
 }) => {
     return (
-        <div className='md:w-60 shadow-md md:shadow-none py-4 px-4 md:py-2  hover:shadow-xl rounded flex flex-col gap-1 text-[0.7rem] text-[#535665] '  >
+        <div className='md:w-60 shadow-md md:shadow-none py-4 px-4 md:py-4 hover:shadow-xl rounded flex flex-col gap-1 text-[0.7rem] text-[#535665] '  >
             <div className="res-card">
                 <img className="relative w-full min-h-[150px] overflow-hidden aspect-video object-cover block rounded-md"
                     alt="restaurant"
@@ -39,15 +39,20 @@ const RestuarantCard = ({ cloudinaryImageId,
     );
 };
 
-export const withPromotedRestaurant = () => {
-    return () => {
-        return (props) => {
-            <div>
-                <label>Promoted</label>
-                <RestuarantCard {...props} />
+// Higher order component for top rated restaurants
+
+export const withTopRatedLabel = (WrappedComponent) => {
+    return (props) => {
+        return (
+            <div className="relative">
+                <WrappedComponent {...props} />
+                <div
+                    className="absolute top-2 left-4 bg-gradient-to-r from-yellow-400 to-red-500 p-2 px-2 rounded-md text-white text-xs font-semibold"
+                >
+                    Top Rated
+                </div>
             </div>
-        }
+        );
     };
 };
-
 export default RestuarantCard;

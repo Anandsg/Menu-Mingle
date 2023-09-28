@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import './Body.css';
-import RestuarantCard, { withPromotedRestaurant } from "./RestuarantCard";
+import RestuarantCard, { withTopRatedLabel } from "./RestuarantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
@@ -10,7 +10,7 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const PromotedRestaurant = withPromotedRestaurant(RestuarantCard);
+    const RestaurantCardTopRated = withTopRatedLabel(RestuarantCard);
     console.log('Body rendered', listOfRestaurants);
 
     useEffect(() => {
@@ -62,22 +62,22 @@ const Body = () => {
                         }}
                     >Search</button>
                 </div>
-                <div className="">
+                {/* <div className="">
                     <button onClick={() => {
                         const filteredList = listOfRestaurants.filter(
                             (res) => res.info.avgRating > 4
                         );
                         setFilteredRestaurant(filteredList);
                     }}>Top Rated</button>
-                </div>
+                </div> */}
             </div>
-            <div className="flex flex-wrap justify-center gap-5">
+            <div className="flex flex-wrap justify-center gap-5 py-6">
                 {/* We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as id */}
                 {filteredRestaurant.map((restaurant) => {
                     return <Link key={restaurant.info.id} to={'restaurant/' + restaurant.info.id}
                     >
-                        {restaurant.info.promoted ? (
-                            <PromotedRestaurant />
+                        {restaurant.info.avgRating >= 4.4 ? (
+                            <RestaurantCardTopRated {...restaurant.info} />
                         ) : (
                             <RestuarantCard  {...restaurant.info} />
                         )}
