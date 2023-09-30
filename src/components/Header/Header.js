@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 // import './Header.css';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from "react-router-dom";
@@ -10,11 +10,12 @@ import {
     PhoneIcon,
     ShoppingBagIcon,
 } from '@heroicons/react/24/solid';
-
+import UserContext from "../Context/useContext";
 
 
 const Header = () => {
-
+    const { LoggedInuser } = useContext(UserContext);
+    console.log(LoggedInuser)
 
     const [isLoggedin, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
@@ -81,6 +82,9 @@ const Header = () => {
                             Login
                         </button>
                     )}
+                    <li className="hidden md:block">
+                        {LoggedInuser}
+                    </li>
                 </ul>
             </div>
         </div>
