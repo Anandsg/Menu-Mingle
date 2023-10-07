@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react"
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import useOnlineStatus from "../../utils/useOnlineStatus";
+// import useOnlineStatus from "../../utils/useOnlineStatus";
 import {
     BuildingOfficeIcon,
     HomeIcon,
@@ -20,7 +20,7 @@ const Header = () => {
     const [isLoggedin, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
 
-    const onlineStatus = useOnlineStatus();
+    // const onlineStatus = useOnlineStatus();
     // console.log('Header rendered')
 
     // if No dependency array - [] => useEffect will be called everytime when component render
