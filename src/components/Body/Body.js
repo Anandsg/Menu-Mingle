@@ -26,7 +26,6 @@ const Body = () => {
         setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     };
-
     const onlineStatus = useOnlineStatus();
     if (onlineStatus === false)
         return (
@@ -76,7 +75,7 @@ const Body = () => {
                 {filteredRestaurant.map((restaurant) => {
                     return <Link key={restaurant.info.id} to={'restaurant/' + restaurant.info.id}
                     >
-                        {restaurant.info.avgRating >= 4.4 ? (
+                        {restaurant.info.avgRating >= 4.6 ? (
                             <RestaurantCardTopRated {...restaurant.info} />
                         ) : (
                             <RestuarantCard  {...restaurant.info} />

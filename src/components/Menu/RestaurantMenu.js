@@ -50,19 +50,24 @@ const RestaurantMenu = () => {
                         {totalRatingsString}
                     </p>
                 </div>
-
             </div>
-            {categories.map((category, index) => (
-                // controlled component
-                <RestaurantCategory
-                    key={category.card?.card.title}
-                    data={category.card?.card}
-                    showIndex={showIndex}
-                    index={index}
-                    setShowIndex={setShowIndex}
-                />
 
-            ))}
+            {categories ? (
+                categories.map((category, index) => (
+                    // controlled component
+                    <RestaurantCategory
+                        key={category.card?.card.title}
+                        data={category.card?.card}
+                        showIndex={showIndex}
+                        index={index}
+                        setShowIndex={setShowIndex}
+                    />
+
+                ))) :
+                (
+                    <p>loading...</p>
+                )
+            }
         </div>
     );
 };
