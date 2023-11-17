@@ -11,6 +11,7 @@ import {
     ShoppingBagIcon,
 } from '@heroicons/react/24/solid';
 import UserContext from "../Context/useContext";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
@@ -32,6 +33,10 @@ const Header = () => {
     //     console.log('Header useEffect');
     // }, [btnChange])
 
+
+    // subscribing to the store using selector
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log(cartItems);
     return (
         <div className="flex justify-between px-28 shadow-md">
             <div className="logo-container">
@@ -69,7 +74,7 @@ const Header = () => {
                     <Link to='/cart'
                         className='p-2 relative md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2'>
                         <ShoppingBagIcon className='w-4 h-4 text-gray-700' />{' '}
-                        <li className="hidden md:block">Cart</li>
+                        <li className="hidden md:block">Cart - {cartItems.length}</li>
                     </Link>
                     {isLoggedin ? (
                         <button className="ml-4 bg-orange-400 text-white p-2 px-4 rounded-md items-center gap-2 hidden md:flex"
