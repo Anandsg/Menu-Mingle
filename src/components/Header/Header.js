@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
     const { LoggedInuser } = useContext(UserContext);
-    console.log(LoggedInuser)
+    // console.log(LoggedInuser)
 
     const [isLoggedin, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
